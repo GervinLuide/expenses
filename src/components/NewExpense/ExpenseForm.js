@@ -2,9 +2,9 @@ import React, {useState} from 'react';
 import './ExpenseForm.css';
 
 const ExpenseForm = () => {
-    //const [enteredTitle, setEnteredTitle] = useState('')
-    //const [enteredAmount, setEnteredAmount] = useState('')
-    //const [enteredDate, setEnteredDate] = useState('')
+    const [enteredTitle, setEnteredTitle] = useState('')
+    const [enteredAmount, setEnteredAmount] = useState('')
+    const [enteredDate, setEnteredDate] = useState('')
     const [userInput, setUserInput] = useState({
         enteredTitle: '',
         enteredAmount: '',
@@ -13,34 +13,36 @@ const ExpenseForm = () => {
     console.log(userInput)
 
     const titleChangeHandler = (event) => {
-        setUserInput({
-            ...userInput,
-            enteredTitle: event.target.value
-        })
+        setEnteredTitle(event.target.value)
     }
 
     const amountChangeHandler = (event) => {
-        setUserInput({
-            ...userInput,
-            enteredTitle: event.target.value
-        })
+        setEnteredTitle(event.target.value)
     }
 
     const dateChangeHandler = (event) => {
-        setUserInput({
-            ...userInput,
-            enteredDate: event.target.value
-        })
+        setEnteredTitle(event.target.value)
+    }
+
+    const submitHandler = (event) => {
+        event.preventDefault()
+        const expenseData = {
+            title: enteredTitle,
+            amount: enteredAmount,
+            date: new Date(enteredDate)
+        }
+        console.log(expenseData)
+        setEnteredTitle('')
     }
 
     return(
         <div class="App">
             <div class="new-expense">
-                <form>
+                <form onSubmit={submitHandler}>
                     <div className="new-expense__controls">
                         <div className="new-expense__control">
                             <label>Title</label>
-                            <input type="text" onChange={titleChangeHandler} />
+                            <input type="text" onChange={titleChangeHandler} value={enteredTitle} />
                         </div>
                         <div className="new-expense__control">
                             <label>Amount</label>
