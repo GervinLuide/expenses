@@ -2,10 +2,18 @@ import React from 'react';
 import ExpenseForm from "./ExpenseForm";
 import './NewExpense.css';
 
-const NewExpense = () => {
+const NewExpense = (props) => {
+    const saveExpenseDatahandler = (enteredExpenseData) => {
+        const expenseData = {
+            ...enteredExpenseData,
+            id: Math.random().toString()
+        }
+        props.onAddExpense(expenseData)
+    }
+
     return(
-        <div>
-            <ExpenseForm></ExpenseForm>
+        <div className="new-expense">
+            <ExpenseForm onSaveExpenseData={saveExpenseDatahandler}></ExpenseForm>
         </div>
     )
 }
